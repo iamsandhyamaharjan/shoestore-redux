@@ -21,7 +21,7 @@ const Item = ({ifExists, id, color, shadow, title, text, img, btn,rating,price})
     <div className={`flex items-center ${ifExists ? 'absolute top-5 right-1' :'justify-center'}`}>
       <img
       src={img}
-      alt="img/item-img"
+      alt={`img/item-img/${id}`}
   className={`h-36 w-64 transitions-theme hover:-rotate-12 ${ifExists ? 'h-auto w-64 lg:w-56 md:w-48 -rotate-[35deg]':'h-36 w-64'}`}
   />
     </div>
