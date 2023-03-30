@@ -1,7 +1,15 @@
 import React from 'react'
 import { ShoppingBagIcon, StarIcon} from "@heroicons/react/24/solid";
+import { useDispatch } from 'react-redux';
+import { setAddItemToCart } from '../../app/CartSlice';
 
 const Item = ({ifExists, id, color, shadow, title, text, img, btn,rating,price}) => {
+const dispatch = useDispatch();
+
+  const onAddToCart = ()=>{
+    const item = {id, title, text, img, color, shadow, price};
+    dispatch(setAddItemToCart(item))
+  }
   return (
     <>
     <div className={`relative bg-gradient-to-b ${color}  ${shadow} grid items-center ${ifExists ? 'justify-items-start':'justify-items-center'} rounded-xl py-4 px-5 transition-all duration-700 ease-in-out w-full hover:scale-105`}>
@@ -14,8 +22,8 @@ const Item = ({ifExists, id, color, shadow, title, text, img, btn,rating,price})
         </div>
       </div>
       <div className='flex items-center gap-3'>
-        <button type='button' className='bg-whit/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200'><ShoppingBagIcon className='icon-style text-slate-900'/></button>
-        <button type='button' className='bg-whit/90 blur-effect-theme button-theme px-2 py-1 shadow shadow-sky-200 text-sm text-black'>{btn}</button>
+        <button type='button' className='bg-whit/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200 ' onClick={()=>onAddToCart()}><ShoppingBagIcon className='icon-style text-slate-900'/></button>
+        <button type='button'  className='bg-whit/90 blur-effect-theme button-theme px-2 py-1 shadow shadow-sky-200 text-sm text-black'>{btn}</button>
       </div>
  
     <div className={`flex items-center ${ifExists ? 'absolute top-5 right-1' :'justify-center'}`}>
